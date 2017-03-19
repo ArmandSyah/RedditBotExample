@@ -19,17 +19,18 @@ def runbot(reddit):
     '''
     for comment in reddit.subreddit('kwespellTest').comments(limit=25):
         if 'waifu' in comment.body:
-            print("Found string")
-            comment.reply("Your waifu is bad and you should feel bad [Better Waifu](https://cdn.awwni.me/woz3.jpg)")
+            print('Found string')
+            comment.reply(
+                'Your waifu is bad and you should feel bad /n [(Better Waifu)](https://cdn.awwni.me/woz3.jpg)')
 
     print('Pausing bot')
     time.sleep(10)
 
 
+try:
+    reddit = botlogin()
+except praw.exceptions:
+    print('failed login')
+    sys.exit(1)
 while True:
-    try:
-        reddit = botlogin()
-    except praw.exceptions:
-        print("failed login")
-        sys.exit(1)
     runbot(reddit)
